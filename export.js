@@ -2,7 +2,7 @@ const fs = require("fs");
 const collection = "items";
 
 const options = {
-  docsFromEachCollection: 1000, // limit number of documents when exporting
+  docsFromEachCollection: 1, // limit number of documents when exporting
   refs: ["refKey"], // reference Path
 };
 
@@ -23,5 +23,8 @@ backup(collection, options).then((data) => {
     items.push(value);
   }
   console.log(items.length);
-  fs.writeFileSync(`${collection}-${Date.now()}.json`, JSON.stringify(items));
+  fs.writeFileSync(
+    `backups/${collection}-${Date.now()}.json`,
+    JSON.stringify(items)
+  );
 });
