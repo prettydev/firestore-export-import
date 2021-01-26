@@ -2,7 +2,7 @@ const fs = require("fs");
 const collection = "items";
 
 const options = {
-  docsFromEachCollection: 1, // limit number of documents when exporting
+  docsFromEachCollection: 1000, // limit number of documents when exporting
   refs: ["refKey"], // reference Path
 };
 
@@ -20,6 +20,10 @@ backup(collection, options).then((data) => {
   for (const [key, value] of Object.entries(data.items)) {
     delete value.community;
     delete value.location;
+    delete value.nutritionImage;
+    delete value.privateProductImage;
+    delete value.productImage;
+    delete value.ingredientsImage;
     items.push(value);
   }
   console.log(items.length);
